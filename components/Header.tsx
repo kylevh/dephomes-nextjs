@@ -18,6 +18,7 @@ const styles = {
 }
 
 
+
 function Header() {
     const path = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
@@ -49,17 +50,34 @@ function Header() {
         }
     }, [usePathname(), setNavbarTransparent])
 
-    const changeBackground = () => {
-        if(window.scrollY >= 20) {
-            console.log('WINDOW TIME')
-            setNavbarTransparent(false)
-        }
-        else{
-            setNavbarTransparent(true);
-        }
-    }
+    // const changeBackground = () => {
+    //     if (window.scrollY >= 20) {
+    //         console.log('WINDOW TIME')
+    //         setNavbarTransparent(false)
+    //     }
+    //     else {
+    //         setNavbarTransparent(true);
+    //     }
+    // }
 
-    window.addEventListener('scroll', changeBackground)
+    useEffect(function mount() {
+        function onScroll() {
+            if (window.scrollY >= 20) {
+                setNavbarTransparent(false)
+            }
+            else if(!strictWhiteNavbar){
+                setNavbarTransparent(true);
+            }
+        }
+
+        window.addEventListener("scroll", onScroll);
+
+        return function unMount() {
+            window.removeEventListener('scroll', onScroll);
+        };
+    });
+
+    // window.addEventListener('scroll', changeBackground)
 
     return (
         <header>
