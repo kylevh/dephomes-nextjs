@@ -48,7 +48,7 @@ function Header() {
             setNavShadow(true);
             setStrictWhiteNavbar(true);
         }
-    }, [usePathname(), setNavbarTransparent, path])
+    }, [setNavbarTransparent, path])
 
     // const changeBackground = () => {
     //     if (window.scrollY >= 20) {
