@@ -1,61 +1,135 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { argentum, moon, mulish } from '@/app/fonts'
 import { BsList, BsX } from 'react-icons/bs'
+import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
+import { strict } from 'assert'
 
 
 const styles = {
-    navLinks: `${argentum.className} font-light cursor-pointer antialiased text-sm w-32 uppercase hover:text-black text-white ease-in-out duration-200`,
-    navLinksWhite: `${argentum.className} font-light cursor-pointer text-sm ml-20 uppercase hover:text-dep-offwhite text-dep-textColor ease-in-out duration-200`,
-    navFont: `${moon.className} text-2xl`
+    navLinksTrans: `${argentum.className} text-white font-light cursor-pointer antialiased text-sm w-36 uppercase hover:text-black ease-in-out duration-200`,
+    navLinksWhite: `${argentum.className} text-dep-textColor font-light cursor-pointer antialiased text-sm w-36 uppercase hover:text-black ease-in-out duration-200`,
+    navFont: `${moon.className} text-2xl`,
+    navBarTransparent: `bg-transparent ease-in-out duration-0`,
+    navBarWhite: `bg-[#FFFCF8] ease-in-out duration-500 shadow-md`,
 }
 
 
 function Header() {
+    const path = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => setMenuOpen(!menuOpen);
+    const [navBarTransparent, setNavbarTransparent] = useState(true);
+    const [strictWhiteNavbar, setStrictWhiteNavbar] = useState(false);
+    const [navShadow, setNavShadow] = useState(false);
+
+    useEffect(() => {
+        if (path === '/') {
+            setNavbarTransparent(true);
+            setNavShadow(false);
+            setStrictWhiteNavbar(false);
+        }
+        else if (path === '/portfolio') {
+            setNavbarTransparent(false);
+            setNavShadow(false);
+            setStrictWhiteNavbar(true);
+        }
+        else if (path === '/about') {
+            setNavbarTransparent(true);
+            setNavShadow(true);
+            setStrictWhiteNavbar(false);
+        }
+        else if (path === '/contact') {
+            setNavbarTransparent(false);
+            setNavShadow(true);
+            setStrictWhiteNavbar(true);
+        }
+    }, [usePathname(), setNavbarTransparent])
+
+    const changeBackground = () => {
+        if(window.scrollY >= 20) {
+            console.log('WINDOW TIME')
+            setNavbarTransparent(false)
+        }
+        else{
+            setNavbarTransparent(true);
+        }
+    }
+
+    window.addEventListener('scroll', changeBackground)
 
     return (
         <header>
-            <nav className='w-full h-24  bg-grey opacity-75 absolute top-0 z-10'>
+            <nav className={`${(navBarTransparent ? styles.navBarTransparent : styles.navBarWhite)} 
+            ${navShadow ? 'shadow-md' : 'shadow-0'}
+            w-full h-20 sm:h-24 pb-5 fixed z-10`}>
                 {/* Desktop Menu */}
-                <div className='flex items-center justify-between h-full px-6 sm:px-10 pt-[10px] sm:pt-[30px] w-full select-none no-drag unselectable'>
-                    <div className='flex w-5/6 sm:w-1/3'>
+                <div className='flex items-center justify-between h-full px-6 sm:px-6 pt-[10px] sm:pt-[30px] w-full'>
+                    <div className='flex w-5/6 sm:w-1/3 pt-5 sm:pt-0'>
                         <Link href='/' className='w-150'>
-                            <Image
-                                src='/images/dep-side-small-white.png'
-                                alt='DEPHomes Logo'
-                                width={150}
-                                height={75}
-                                className='cursor-pointer'
-                                unoptimized
-                            />
+                            {navBarTransparent ? (
+                                <Image
+                                    src='/images/dep-side-small-white.png'
+                                    alt='DEPHomes Logo'
+                                    width={150}
+                                    height={75}
+                                    className='cursor-pointer'
+                                    unoptimized
+                                />
+                            ) : (
+                                <Image
+                                    src='/images/dep-side-small.png'
+                                    alt='DEPHomes Logo'
+                                    width={150}
+                                    height={75}
+                                    className='cursor-pointer'
+                                    unoptimized
+                                />
+                            )
+                            }
+
                         </Link>
                     </div>
-                    <div className='w-1/3 flex justify-center'>
+                    <div className='w-1/3 flex justify-center '>
                         <ul className='hidden sm:flex text-center'>
-                            <li className={styles.navLinks}>
-                                <Link href='/portfolio'>Portfolio</Link>
+                            <li className={`${navBarTransparent ? styles.navLinksTrans : styles.navLinksWhite}`}>
+                                <Link href='/portfolio' className='relative' >
+                                    {"/portfolio" === path && (
+                                        <motion.span layoutId="underline" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'} `} />
+                                    )}
+                                    Portfolio
+                                </Link>
                             </li>
-                            <li className={styles.navLinks}>
-                                <Link href='/about'>About</Link>
+                            <li className={`${navBarTransparent ? styles.navLinksTrans : styles.navLinksWhite}`}>
+                                <Link href='/about' className='relative'>
+                                    {"/about" === path && (
+                                        <motion.span layoutId="underline" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'}`} />
+                                    )}
+                                    About
+                                </Link>
                             </li>
-                            <li className={styles.navLinks}>
-                                <Link href='/contact'>Contact</Link>
+                            <li className={`${navBarTransparent ? styles.navLinksTrans : styles.navLinksWhite}`}>
+                                <Link href='/contact' className='relative'>
+                                    {"/contact" === path && (
+                                        <motion.span layoutId="underline" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'}`} />
+                                    )}
+                                    Contact
+                                </Link>
                             </li>
                         </ul>
                     </div>
                     <div className='w-1/3'> </div>
 
                     {/* Mobile Menu */}
-                    <div className='sm:hidden cursor-pointer pl-24' onClick={toggleMenu}>
-                        <BsList className='h-8 w-8 text-gray-900'></BsList>
+                    <div className='sm:hidden cursor-pointer pl-24 pt-5' onClick={toggleMenu}>
+                        <BsList className={`h-8 w-8 ${navBarTransparent ? 'text-dep-offwhite' : 'text-gray-900'} `}></BsList>
                     </div>
                 </div>
 
-                <div className={menuOpen ? 'fixed top-0 left-0 w-[75%] sm:hidden h-screen bg-gray-500 p-10 ease-in-out duration-500' : "fixed left-[-100%] top-0 p-10 ease-in-out"}>
+                <div className={menuOpen ? 'fixed top-0 left-0 w-[75%] sm:hidden h-screen bg-dep-primary p-10 ease-in-out duration-500' : "fixed left-[-100%] top-0 p-10 ease-in-out"}>
                     <div className='flex w-full items-center justify-end'>
                         <div className='cursor-pointer'>
                             <BsX className='h-8 w-8 text-[secondary]' onClick={toggleMenu} />
@@ -65,12 +139,12 @@ function Header() {
                     {/* Mobile Menu Links */}
                     <div className='flex-col py-4'>
                         <ul>
-                            <li onClick={() => setMenuOpen(false)} className={`${styles.navFont} py-4 hover:underline hover:decoration-white`}>
+                            <li onClick={() => setMenuOpen(false)} className={`${styles.navFont} py-4 hover:underline hover:decoration-dep-textColor`}>
                                 <Link href='/'>Home</Link>
                             </li>
-                            <li onClick={() => setMenuOpen(false)} className={`${styles.navFont} py-4 hover:underline hover:decoration-[green]`}><Link href='/portfolio'>Portfolio</Link></li>
-                            <li onClick={() => setMenuOpen(false)} className={`${styles.navFont} py-4 hover:onClick={() => setMenuOpen(false)}  hover:decoration-[green]`}><Link href='/about'>About</Link></li>
-                            <li onClick={() => setMenuOpen(false)} className={`${styles.navFont} py-4 hover:underline hover:decoration-[green]`}><Link href='/contact'>Contact</Link></li>
+                            <li onClick={() => setMenuOpen(false)} className={`${styles.navFont} py-4 hover:underline hover:decoration-dep-textColor`}><Link href='/portfolio'>Portfolio</Link></li>
+                            <li onClick={() => setMenuOpen(false)} className={`${styles.navFont} py-4 hover:underline hover:decoration-dep-textColor`}><Link href='/about'>About</Link></li>
+                            <li onClick={() => setMenuOpen(false)} className={`${styles.navFont} py-4 hover:underline hover:decoration-dep-textColor`}><Link href='/contact'>Contact</Link></li>
                         </ul>
                     </div>
                 </div>

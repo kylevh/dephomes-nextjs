@@ -1,55 +1,9 @@
+'use client'
 import Header from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Mulish } from 'next/font/google'
-import localFont from 'next/font/local'
-
-const mulish = Mulish({
-  subsets: ['latin'],
-  weight: ['200', '400', '500'],
-  variable: '--font-mulish'
-})
-const moon = localFont({
-  src: [
-    {
-      path: './fonts/MoonLight.otf',
-      weight: '200',
-      style: 'normal',
-    },
-    {
-      path: './fonts/MoonBold.otf',
-      weight: '600',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-moon',
-})
-const argentum = localFont({
-  src: [
-    {
-      path: './fonts/ArgentumSans-ExtraLight.otf',
-      weight: '200',
-      style: 'normal',
-    },
-    {
-      path: './fonts/ArgentumSans-Light.otf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: './fonts/ArgentumSans-Medium.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: './fonts/ArgentumSans-Regular.otf',
-      weight: '500',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-argentum',
-})
-
+import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'DEPHomes',
@@ -61,11 +15,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  const pageKey = usePathname()
+
   return (
     <html lang="en">
       <body>
         <Header />
-        {children}
+        {/* initial={{ opacity: 0, scale: 1.2 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.2 }} transition={{ type: "tween", duration: .5 }} */}
+        <AnimatePresence mode="wait">
+          {children}
+        </AnimatePresence>
       </body>
     </html>
   )

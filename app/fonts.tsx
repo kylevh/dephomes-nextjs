@@ -30,21 +30,21 @@ const arge = localFont({
             weight: '200',
             style: 'normal',
         },
-        // {
-        //     path: './fonts/ArgentumSans-Light.otf',
-        //     weight: '200',
-        //     style: 'normal',
-        // },
-        // {
-        //     path: './fonts/ArgentumSans-Regular.otf',
-        //     weight: '400',
-        //     style: 'normal',
-        // },
-        // {
-        //     path: './fonts/ArgentumSans-Medium.otf',
-        //     weight: '500',
-        //     style: 'normal',
-        // },
+        {
+            path: './fonts/ArgentumSans-Light.otf',
+            weight: '300',
+            style: 'normal',
+        },
+        {
+            path: './fonts/ArgentumSans-Regular.otf',
+            weight: '400',
+            style: 'normal',
+        },
+        {
+            path: './fonts/ArgentumSans-Medium.otf',
+            weight: '500',
+            style: 'normal',
+        },
     ],
     variable: '--font-argentum',
     display: 'block',
