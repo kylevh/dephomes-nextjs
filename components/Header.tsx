@@ -75,7 +75,7 @@ function Header() {
         return function unMount() {
             window.removeEventListener('scroll', onScroll);
         };
-    });
+    }, []);
 
     // window.addEventListener('scroll', changeBackground)
 
