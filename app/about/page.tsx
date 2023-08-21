@@ -33,7 +33,7 @@ function AboutPage() {
             </div>
             <div className='w-full sm:col-span-6 col-span-12 col-start-0 sm:col-start-4 justify-center flex flex-col'>
               <p className={`${mulish.className} font-light pt-5 text-dep-textColor text-lg text-center`}>
-                Explore a collection of meticulously crafted, sophisticated, and environmentally conscious modern homes in the heart of Seattle's housing market
+                Explore a collection of meticulously crafted, sophisticated, and environmentally conscious modern homes in the heart of Seattle
               </p>
             </div>
           </div>
