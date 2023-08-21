@@ -48,7 +48,7 @@ function Header() {
             setNavShadow(true);
             setStrictWhiteNavbar(true);
         }
-    }, [usePathname(), setNavbarTransparent])
+    }, [usePathname(), setNavbarTransparent, path])
 
     // const changeBackground = () => {
     //     if (window.scrollY >= 20) {
@@ -75,7 +75,7 @@ function Header() {
         return function unMount() {
             window.removeEventListener('scroll', onScroll);
         };
-    }, []);
+    }, [strictWhiteNavbar]);
 
     // window.addEventListener('scroll', changeBackground)
 
