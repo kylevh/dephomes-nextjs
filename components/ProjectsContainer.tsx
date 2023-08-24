@@ -7,6 +7,7 @@ import { CldImage } from 'next-cloudinary'
 
 function ProjectsContainer() {
     const photoHeaders: Promise<Photo[]> = getPhotoHeaders();
+    console.log(photoHeaders)
 
     return (
         <motion.div initial={{ opacity: 0, }} animate={{ opacity: 1, }} exit={{ opacity: 0, }} transition={{ type: "tween", duration: .8, delay: .4 }}
