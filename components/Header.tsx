@@ -11,13 +11,11 @@ import { strict } from 'assert'
 
 const styles = {
     navLinksTrans: `${argentum.className} text-white font-light cursor-pointer antialiased text-sm w-36 uppercase hover:text-black ease-in-out duration-200`,
-    navLinksWhite: `${argentum.className} text-dep-textColor font-light cursor-pointer antialiased text-sm w-36 uppercase hover:text-black ease-in-out duration-200`,
+    navLinksWhite: `${argentum.className} text-dep-textColor font-light cursor-pointer antialiased text-sm w-36 uppercase hover:text-gray-400 ease-in-out duration-200`,
     navFont: `${moon.className} text-2xl`,
     navBarTransparent: `bg-transparent ease-in-out duration-0`,
     navBarWhite: `bg-[#FFFCF8] ease-in-out duration-500 shadow-md`,
 }
-
-
 
 function Header() {
     const path = usePathname();
@@ -27,6 +25,7 @@ function Header() {
     const [strictWhiteNavbar, setStrictWhiteNavbar] = useState(false);
     const [navShadow, setNavShadow] = useState(false);
 
+    //Settings to make sure navbar is either transparent or solid depending on the page directory
     useEffect(() => {
         if (path === '/') {
             setNavbarTransparent(true);
@@ -50,22 +49,13 @@ function Header() {
         }
     }, [setNavbarTransparent, path])
 
-    // const changeBackground = () => {
-    //     if (window.scrollY >= 20) {
-    //         console.log('WINDOW TIME')
-    //         setNavbarTransparent(false)
-    //     }
-    //     else {
-    //         setNavbarTransparent(true);
-    //     }
-    // }
-
+    //This is to allow the navbar to turn transparent/solid when scrolling
     useEffect(function mount() {
         function onScroll() {
             if (window.scrollY >= 20) {
                 setNavbarTransparent(false)
             }
-            else if(!strictWhiteNavbar){
+            else if (!strictWhiteNavbar) {
                 setNavbarTransparent(true);
             }
         }
@@ -77,7 +67,6 @@ function Header() {
         };
     }, [strictWhiteNavbar]);
 
-    // window.addEventListener('scroll', changeBackground)
 
     return (
         <header>
@@ -95,7 +84,7 @@ function Header() {
                                     width={150}
                                     height={75}
                                     className='cursor-pointer'
-                                    unoptimized
+
                                 />
                             ) : (
                                 <Image
@@ -104,7 +93,7 @@ function Header() {
                                     width={150}
                                     height={75}
                                     className='cursor-pointer'
-                                    unoptimized
+
                                 />
                             )
                             }
@@ -116,7 +105,11 @@ function Header() {
                             <li className={`${navBarTransparent ? styles.navLinksTrans : styles.navLinksWhite}`}>
                                 <Link href='/portfolio' className='relative' >
                                     {"/portfolio" === path && (
-                                        <motion.span layoutId="underline" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'} `} />
+                                        <motion.span layoutId="underline1" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'} `}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ ease: "easeIn", duration: .5, delay: .1 }} />
                                     )}
                                     Portfolio
                                 </Link>
@@ -124,7 +117,11 @@ function Header() {
                             <li className={`${navBarTransparent ? styles.navLinksTrans : styles.navLinksWhite}`}>
                                 <Link href='/about' className='relative'>
                                     {"/about" === path && (
-                                        <motion.span layoutId="underline" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'}`} />
+                                        <motion.span layoutId="underline2" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'}`}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ ease: "easeIn", duration: .5, delay: .1 }} />
                                     )}
                                     About
                                 </Link>
@@ -132,7 +129,11 @@ function Header() {
                             <li className={`${navBarTransparent ? styles.navLinksTrans : styles.navLinksWhite}`}>
                                 <Link href='/contact' className='relative'>
                                     {"/contact" === path && (
-                                        <motion.span layoutId="underline" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'}`} />
+                                        <motion.span layoutId="underline3" className={`absolute bottom-[-3px] h-[1px] w-full ${navBarTransparent ? 'bg-dep-offwhite' : 'bg-dep-textColor'}`}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ ease: "easeIn", duration: .5, delay: .1 }} />
                                     )}
                                     Contact
                                 </Link>
