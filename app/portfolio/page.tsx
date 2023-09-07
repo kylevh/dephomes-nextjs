@@ -10,14 +10,14 @@ type SearchResult = {
   folder: string;
 };
 
-export async function PortfolioPage() {
+export default async function PortfolioPage() {
   const results = (await cloudinary.v2.search
     .expression("resource_type:image AND tags=header")
     .sort_by("public_id", "desc")
     .max_results(100)
     .execute()) as {resources: SearchResult[]};
 
-  console.log(results);
+  //console.log(results);
 
   return (
     <main className="bg-green ">
@@ -42,4 +42,3 @@ export async function PortfolioPage() {
   );
 }
 
-export default PortfolioPage;
