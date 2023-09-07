@@ -31,6 +31,7 @@ export async function PortfolioPage() {
               {results.resources.map((result) => (
                 <ProjectContainer 
                 resultData={result}
+                key={result.public_id}
                 />
               ))}
             </div>
