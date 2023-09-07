@@ -16,3 +16,9 @@ type Photo = {
     "url": string,
     "secure_url": string,
 }
+
+type SearchResult = {
+    public_id: string;
+    secure_url: string;
+    folder: string;
+  };

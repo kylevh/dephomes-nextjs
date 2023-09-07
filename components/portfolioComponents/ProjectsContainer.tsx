@@ -9,7 +9,7 @@ function ProjectsContainer() {
 
 
     return (
-        <motion.div initial={{ opacity: 0, }} animate={{ opacity: 1, }} exit={{ opacity: 0, }} transition={{ type: "tween", duration: .8, delay: .4 }}
+        <motion.div 
             className=" justify-center items-center " style={{ display: 'grid', gridGap: '30px 8px', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, auto))' }}>
 
             <div className='shadow-md justify-self-center items-self-center relative w-96 h-96' >
