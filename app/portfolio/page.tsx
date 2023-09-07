@@ -2,7 +2,6 @@ import React from "react";
 import ProjectContainer from "@/components/portfolioComponents/ProjectContainer";
 import PortfolioHeader from "@/components/portfolioComponents/PortfolioHeader";
 import cloudinary from "cloudinary";
-import { CldImage } from "next-cloudinary";
 
 type SearchResult = {
   public_id: string;
@@ -17,7 +16,7 @@ export default async function PortfolioPage() {
     .max_results(100)
     .execute()) as {resources: SearchResult[]};
 
-  //console.log(results);
+  // console.log(results);
 
   return (
     <main className="bg-green ">

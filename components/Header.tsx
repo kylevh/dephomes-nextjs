@@ -47,6 +47,11 @@ function Header() {
             setNavShadow(true);
             setStrictWhiteNavbar(true);
         }
+        else {
+            setNavbarTransparent(false);
+            setNavShadow(false);
+            setStrictWhiteNavbar(true);
+        }
     }, [setNavbarTransparent, path])
 
     //This is to allow the navbar to turn transparent/solid when scrolling
