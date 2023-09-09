@@ -2,6 +2,7 @@ import React from "react";
 import ProjectContainer from "@/components/portfolioComponents/ProjectContainer";
 import PortfolioHeader from "@/components/portfolioComponents/PortfolioHeader";
 import cloudinary from "cloudinary";
+import Footer from "@/components/Footer";
 
 type SearchResult = {
   public_id: string;
@@ -14,7 +15,7 @@ export default async function PortfolioPage() {
     .expression("resource_type:image AND tags=header")
     .sort_by("public_id", "desc")
     .max_results(100)
-    .execute()) as {resources: SearchResult[]};
+    .execute()) as { resources: SearchResult[] };
 
   // console.log(results);
 
@@ -28,15 +29,17 @@ export default async function PortfolioPage() {
           <div className="container mx-auto py-24 px-8">
             <div className="justify-center items-center" style={{ display: 'grid', gridGap: '30px 8px', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, auto))' }}>
               {results.resources.map((result) => (
-                <ProjectContainer 
-                resultData={result}
-                key={result.public_id}
+                <ProjectContainer
+                  resultData={result}
+                  key={result.public_id}
                 />
               ))}
             </div>
           </div>
         </div>
       </div>
+      <Footer />
+
     </main>
   );
 }

@@ -5,6 +5,7 @@ import { motion, AnimatePresence, stagger } from 'framer-motion'
 import { argentum, moon, mulish } from '@/app/fonts'
 import { CldImage } from 'next-cloudinary'
 import Link from 'next/link'
+import Footer from '@/components/Footer'
 
 function AboutPage() {
   return (
@@ -173,7 +174,7 @@ function AboutPage() {
                 <Image className="object-cover object-center rounded sm:ml-14" alt="hero" height={300} width={300} src="/images/buildgreen.png" />
               </div>
               <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                <h1 className={`${argentum.className} title-font sm:text-4xl text-4xl mb-4 font-light uppercase text-gray-900`}>Sustainability first
+                <h1 className={`${argentum.className} title-font sm:text-4xl text-4xl mb-4 font-light uppercase text-gray-900`}>Sustainability in mind
                   <br className="hidden lg:inline-block" />
                 </h1>
                 <p className={`${mulish.className} font-medium mb-8 text-base sm:text-lg leading-relaxed`}>DEP Homes was honored with the BuiltGreen Award in 2016 for our relentless pursuit of technologically advanced and environmentally responsible homes. This award highlights our dedication to promoting sustainable living through strategic locations, convenient access to amenities, and green building practices.</p>
@@ -186,6 +187,8 @@ function AboutPage() {
 
         </div>
       </div>
+      <Footer />
+
     </main>
   )
 }

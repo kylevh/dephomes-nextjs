@@ -2,6 +2,7 @@ import cloudinary from "cloudinary";
 import ProjectHeader from '@/components/portfolioComponents/ProjectHeader'
 import React from 'react'
 import ProjectPhotosContainer from "@/components/portfolioComponents/ProjectPhotosContainer";
+import Footer from "@/components/Footer";
 
 type SearchResult = {
     public_id: string;
@@ -43,6 +44,8 @@ export default async function ProjectPage({ params }: {
                     </div>
                 </div>
             </div>
+            <Footer />
+
         </main>
     )
 }
