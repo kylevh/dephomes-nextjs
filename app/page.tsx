@@ -6,7 +6,7 @@ export default async function Home() {
 
 
   return (
-    <main className="w-screen h-screen flex justify-center items-center overflow-auto">
+    <main className="w-screen h-screen flex justify-center items-center overflow-hidden">
       <div className='absolute w-auto justify-center '>
         <HeroText />
         <HeroButton />

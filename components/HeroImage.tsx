@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 function HeroImage() {
     return (
         <motion.img
-            className="object-cover h-full w-full z-[-1]"
+            className="object-cover h-full w-full z-[-1] overflow-hidden"
             key={123152}
             src='/images/header2-2.png'
             alt="Stunning photo of a DEPHomes built house"
