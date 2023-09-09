@@ -1,7 +1,30 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['res.cloudinary.com', 'api.cloudinary.com', 'https://api.cloudinary.com/*']
+        domains: ['res.cloudinary.com', 'api.cloudinary.com', 'https://api.cloudinary.com/*', "https://dummyimage.com", "https://dummyimage.com/*"]
+    },
+
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'api.cloudinary.com',
+                port: '',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'dummyimage.com',
+                port: '',
+                pathname: '/**',
+            },
+        ],
     },
 
     async headers() {
