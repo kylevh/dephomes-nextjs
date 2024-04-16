@@ -9,7 +9,9 @@ function UpcomingContainer({ resultData }: any) {
   const openModal = () => {
     setShowModal(true);
   };
-  const imageUrl = resultData.projectPhotos[0];
+  const imageUrl = Array.isArray(resultData.projectPhotos) && resultData.projectPhotos.length > 0
+  ? String(resultData.projectPhotos[0])
+  : '';
   return (
     <div className="shadow-md justify-self-center items-self-center relative w-96 h-96 hover:bg-dep-offwhite hover:border-8 duration-300 border-dep-primary">
       <div className="w-150">
