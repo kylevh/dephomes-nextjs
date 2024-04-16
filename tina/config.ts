@@ -91,7 +91,7 @@ export default defineConfig({
                 label: "Project Photos",
                 name: "projectPhotos",
                 type: "image",
-                list: false,
+                list: true,
               },
             ],
           },
