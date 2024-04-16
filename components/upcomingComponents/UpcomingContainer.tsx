@@ -9,6 +9,7 @@ function UpcomingContainer({ resultData }: any) {
   const openModal = () => {
     setShowModal(true);
   };
+  const imageUrl = resultData.projectPhotos[0];
   return (
     <div className="shadow-md justify-self-center items-self-center relative w-96 h-96 hover:bg-dep-offwhite hover:border-8 duration-300 border-dep-primary">
       <div className="w-150">
@@ -26,7 +27,7 @@ function UpcomingContainer({ resultData }: any) {
           </div>
 
           <Image
-            src={resultData.projectPhotos[0]}
+            src={imageUrl}
             key={resultData.address}
             alt={resultData.address}
             fill
@@ -37,7 +38,7 @@ function UpcomingContainer({ resultData }: any) {
           {showModal && (
             <div className="fixed inset-0 bg-black  bg-opacity-50 z-50 flex justify-center items-center">
               <div className="flex flex-col bg-white p-4 rounded-lg  max-w-[100rem] max-h-full overflow-auto">
-              <button
+                <button
                   className="w-24 mt-4 bg-dep-primary mb-6 text-white p-2 rounded hover:bg-[#cfe68a] duration-300"
                   onClick={() => setShowModal(false)}
                 >
@@ -45,13 +46,13 @@ function UpcomingContainer({ resultData }: any) {
                 </button>
                 <div className=" ">
                   <Image
-                    src={resultData.projectPhotos[0]}
+                    src={imageUrl}
                     alt={resultData.address}
                     width={1000}
                     height={500}
                   />
                 </div>
-                
+
               </div>
             </div>
           )}
