@@ -32,6 +32,10 @@ export default defineConfig({
         name: "post",
         label: "Posts",
         path: "content/posts",
+        ui: {
+          // This is an DEMO router. You can remove this to fit your site
+          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
+        },
         fields: [
           {
             type: "string",
@@ -47,10 +51,52 @@ export default defineConfig({
             isBody: true,
           },
         ],
-        ui: {
-          // This is an DEMO router. You can remove this to fit your site
-          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
-        },
+      },
+      {
+        name: "upcoming",
+        label: "Projects",
+        path: "content/projects",
+        fields: [
+          {
+            label: "Projects Collection",
+            name: "projectsCollection",
+            type: "string",
+            isTitle: true,
+            required: true,
+          },
+          {
+            label: "Projects",
+            name: "projects",
+            type: "object",
+            list: true,
+            ui: {
+              itemProps: (item) => {
+                return { label: item?.address};
+              }
+            },
+            fields: [ 
+              {
+                label: "Project Address",
+                name: "address",
+                type: "string",
+                required: true,
+              },
+              {
+                label: "Project Description",
+                name: "projectDescription",
+                type: "rich-text",
+                isBody: true,
+              },
+              {
+                label: "Project Photos",
+                name: "projectPhotos",
+                type: "image",
+                list: false,
+              },
+            ],
+          },
+
+        ],
       },
     ],
   },
